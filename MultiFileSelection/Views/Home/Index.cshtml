@@ -1,0 +1,26 @@
+@using MultiFileSelection.Controllers;
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script type="text/javascript">
+</script>
+
+@using (Html.BeginForm("UploadControlUpload", "Home", FormMethod.Post))
+{
+    @Html.DevExpress().UploadControl(settings => {
+    settings.Name = "UploadControl";
+    settings.CallbackRouteValues = new { Controller = "Home", Action = "UploadControlUpload" };
+
+    settings.AdvancedModeSettings.EnableDragAndDrop = true;
+
+
+    settings.ShowUploadButton = true;
+    settings.ShowProgressPanel = true;
+
+    settings.AutoStartUpload = true;
+
+
+    settings.ValidationSettings.Assign(HomeControllerUploadControlSettings.UploadValidationSettings);
+}).GetHtml()
+}
